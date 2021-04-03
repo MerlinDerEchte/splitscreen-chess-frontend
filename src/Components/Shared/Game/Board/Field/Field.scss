@@ -1,0 +1,80 @@
+@use '../../../../../Styles/_Colors.scss';
+.field{
+    width:12.5%;
+    height:12.5%;
+    display:flex;
+    flex: 0 0 12.5%;
+    position: relative;
+
+    img{
+        cursor: pointer;
+        position: absolute;
+        margin-top:10%;
+        margin-left:10%;
+        width:80%; 
+        height: 80%;
+        z-index: 5;
+        animation: pieceAnimation 0.1s ease-in;
+    }
+    .rotated-image{
+        width:100%;
+        height:100%;
+        transform: rotateZ(180deg);
+    }
+    .selected-field{
+        position: absolute;
+        top: 0;
+        height: calc(100% - 10px);
+        left: 0;
+        width: calc(100% - 10px);
+        border-radius: 25%;
+        border-width: 5px;
+        border-color: Colors.$darkblue;
+        border-style: solid;
+    }
+    .possible-move-field{
+        position: absolute;
+        top: 5%;
+        height:90% ;
+        left: 5% ;
+        width: 90% ;
+        z-index:3 ;
+        background: Colors.$darkblue;
+
+        border-radius: 40%;
+        animation: possibleMoveAnimation 0.2s ease-in-out;
+    }
+    .piece-container{
+        z-index: 10;
+    }
+
+
+
+}
+
+
+
+.black-field{
+    background: Colors.$lightblue;
+
+}
+
+.white-field{
+    background: Colors.$whiteFields;
+}
+
+
+
+.attacked-king{
+    background: red;
+}
+
+@keyframes possibleMoveAnimation {
+    from{height: 0%; top: 50%; left: 50%; width: 0%;}
+    to{height:90% ; top: 5% ; left: 5% ; width: 90% ; }                     
+}
+
+@keyframes pieceAnimation {
+    from{opacity: 0}
+    to{opacity: 1}
+}

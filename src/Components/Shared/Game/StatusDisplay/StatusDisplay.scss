@@ -1,0 +1,39 @@
+@use '../../../../Styles/_Colors.scss';
+
+.status-container{
+    position:relative;
+    padding: 0 20px;
+    height: 100%;
+    border:1px solid Colors.$lightblue;
+    display:flex;
+    color: Colors.$whiteFields;
+    background: Colors.$darkblue;
+    
+    .horizontal-status-item{
+        flex: 1;
+        display: flex;
+        padding:auto;
+        justify-content: space-around;
+        
+        span{
+            
+            margin: auto;
+        }
+    }
+
+    .vertical-status-item{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding:auto;
+        justify-content: space-around;
+        
+        span{
+            
+            margin: auto;
+        }
+    }
+    .icon{
+        cursor: pointer;
+    }
+}

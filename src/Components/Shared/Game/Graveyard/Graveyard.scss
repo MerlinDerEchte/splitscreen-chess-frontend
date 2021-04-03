@@ -1,0 +1,22 @@
+.graveyard-container{
+  
+    width: 100%;
+    height:100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .graveyard-item{
+        position: relative;
+        
+        flex: 0 0  12.5%;
+        height: 50%;
+        width: 12.5%;
+        img{
+            height:100%;
+            width: 100%;
+
+        }
+    }
+}
+

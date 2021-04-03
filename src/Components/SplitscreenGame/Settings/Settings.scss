@@ -1,0 +1,91 @@
+@use '../../../Styles/_Colors.scss';
+
+#settings-overlay{
+    position:fixed;
+    top:0px;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: block;
+    z-index:990;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    #settings-main{
+        position: relative;
+        
+        width:80%;
+        
+        background: #eee;
+
+        h2{
+            position:relative;
+            text-align: center;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .settings-item{
+            margin-top:100px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-bottom: 10px;
+
+            .settings-item-icon{
+                height: 30px;
+                width: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: Colors.$lightblue;
+                color: Colors.$whiteFields;
+                border-radius: 50%;
+                border: 1px solid black;
+            }
+
+            .black-container{
+                vertical-align: middle;
+                text-align: center;
+                width: 70px;
+                background: Colors.$darkblue;
+                border: 1px solid Colors.$whiteFields;
+                color: white;
+            }
+
+            .white-container{
+                text-align: center;
+                vertical-align: middle;
+                width: 70px;
+                background: Colors.$whiteFields;
+                border: 1px solid Colors.$darkblue;
+                color: Colors.$darkblue;
+            }
+            
+        }
+        .settings-item-horizontal{
+            flex-direction:row;
+            width: 300px;
+            height: 50px;
+        }
+        .settings-item-vertical{
+            flex-direction: column-reverse;
+            height: 100px;
+            width: 250px;
+        }
+        button{
+                padding:10px 0px;
+                text-align: center;
+                vertical-align: middle;
+                width: 100px;
+                background: Colors.$lightblue;
+                color: Colors.$whiteFields;
+                border-radius: 5px;
+        }
+    }
+}

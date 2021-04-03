@@ -1,0 +1,28 @@
+.game-container{
+    position: relative;
+    width: 100%;
+    height:100%;
+   
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+}
+#board-WHITE{
+    touch-action: none;
+}
+#board-BLACK{
+    touch-action: none;
+}
+
+.game-reverse-container{
+    position: relative;
+    width:  100%;
+    height: 100%;
+ 
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+}
+.game-container-to-move{
+    box-shadow: 0 0 10px 10px #111;
+}

@@ -1,0 +1,184 @@
+@use '../../../Styles/Colors';
+.navigation-button-inactive{
+    
+    top: 5px;
+    left: 5px;
+    animation: button-inactive-animation  0.2s ease-in-out backwards;
+
+    #top-bar{
+        left:2px;
+        top: 10px;
+        animation: button-top-bar-inactive-animation 0.1s 0.2s ease-in-out backwards;
+    }
+    #mid-bar{
+        left:4px;
+        top: 18px;
+        animation: button-mid-bar-inactive-animation 0.1s 0.2s ease-in-out backwards; 
+    }
+    #bottom-bar{
+        left:2px;
+        top: 26px;
+        animation: button-bottom-bar-inactive-animation 0.1s 0.2s ease-in-out backwards;
+    }
+}
+
+.navigation-button-active{
+    
+    top: 5px;
+    left: 150px;
+    animation: button-active-animation 0.3s 0.1s ease-in-out backwards;
+
+
+    #top-bar{
+        // transform: rotateZ(45deg);
+        top: 18px;
+        left:2px;
+        transform: rotateZ(45deg);
+        animation:  button-top-bar-active-animation 0.1s 0.2s ease-in-out backwards;
+        
+    }
+
+    #mid-bar{
+        left: -100px;
+        top: 18px;
+        animation: button-mid-bar-active-animation 0.2s 0.2s ease-in-out backwards;
+    }
+
+    #bottom-bar{
+        left:2px;
+        top: 18px;
+        transform:rotateZ(-45deg);
+        animation: button-bottom-bar-active-animation 0.1s 0.2s ease-in-out backwards;
+    }
+}
+
+.navigation-button-default{
+    
+    top: 5px;
+    left: 5px;
+
+    #top-bar{
+        left:2px;
+        top: 10px;
+    }
+    #mid-bar{
+        left:4px;
+        top: 18px;
+    }
+    #bottom-bar{
+        left:2px;
+        top: 26px;
+    }
+}
+
+
+.navigation-button{
+
+    cursor: pointer;
+    overflow:hidden;
+    border: none;
+    outline:none;
+    width: 40px;
+    height: 40px;
+    z-index: 300;
+    position: fixed;
+    background: none;
+
+    #top-bar{
+        
+        position: absolute;
+        width: 36px;
+        height: 4px;
+        border-radius: 4px;
+        background: Colors.$whiteFields;
+        box-shadow: 1px 1px 5px Colors.$darkblue;
+    }
+    #mid-bar{
+        position: absolute;
+        width: 32px;
+        height: 4px;
+        border-radius: 4px;
+        background: Colors.$whiteFields;
+        box-shadow: 1px 1px 5px Colors.$darkblue;
+    }
+
+    #bottom-bar{
+        position: absolute;
+        width: 36px;
+        height: 4px;
+        border-radius: 4px;
+        background: Colors.$whiteFields;
+        box-shadow: 1px 1px 5px Colors.$darkblue;
+    }
+}
+
+@keyframes button-active-animation{
+    0%{left: 5px; }
+    100%{left: 150px;}
+}
+
+@keyframes button-inactive-animation{
+    0%{left: 150px; }
+    100%{left: 5px;}
+}
+
+@keyframes button-top-bar-active-animation{
+    0%{ left:2px;
+        top: 8px;
+        transform: rotateZ(0deg)}
+    100%{
+        top: 18px;
+        left:2px;
+        transform: rotateZ(45deg)
+    }
+}
+@keyframes button-top-bar-inactive-animation{
+    0%{
+        top: 18px;
+        left:2px;
+        transform: rotateZ(45deg)
+    }
+    100%{ left:2px;
+        top: 8px;
+    }
+}
+
+@keyframes button-bottom-bar-active-animation{
+    0%{ left:2px;
+        top: 26px;
+        transform: rotateZ(0deg)}
+    100%{
+        top: 18px;
+        left:2px;
+        transform: rotateZ(-45deg)
+    }
+}
+
+@keyframes button-bottom-bar-inactive-animation{
+    0%{
+        top: 18px;
+        left:2px;
+        transform: rotateZ(-45deg)
+    }
+    100%{ left:2px;
+        top: 26px;
+        transform: rotateZ(0deg)}
+}
+
+
+@keyframes button-mid-bar-active-animation{
+    0%{ left:2px;}
+    100%{
+        top: 18px;
+        left: -50px;
+        
+    }
+}
+@keyframes button-mid-bar-inactive-animation{
+    
+    0%{
+        top: 18px;
+        left: -50px;
+    }
+    100%{ left:2px;}
+}

@@ -1,0 +1,47 @@
+@use '../../../Styles/Colors';
+
+.ready-to-share-body{
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    height:40%;
+    width: 70%;
+    background: Colors.$darkblue;
+    box-shadow: 0 0  40px 0px Colors.$lightblue;
+    border-radius: 20px; 
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .ready-to-share-description{
+        color: Colors.$whiteFields;
+        text-align: center;
+    }
+
+    .ready-to-share-container{
+        cursor: pointer;
+        border: 1px solid Colors.$whiteFields;
+        color: Colors.$whiteFields;
+        background: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items:center;
+        
+        span{
+            vertical-align: middle;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        &:active{
+            box-shadow: 0 0 20px black;
+            border: 1px solid Colors.$whiteFields;
+        }
+        &:focus{
+            border: 1px solid Colors.$whiteFields;
+            outline: none;
+        }
+    }
+
+}

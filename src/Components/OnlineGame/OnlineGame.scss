@@ -1,0 +1,66 @@
+/* @use '../../Styles/_Colors.scss';
+
+.status-display-container{
+    position:relative;
+    width: max(60vh,80vw);
+    height: calc(min(20vh, 100px) - 40px);
+    padding: 10px 20px 10px 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.games-online-container{
+    position: relative;
+    width: 60vh;
+    height: 60vh;
+    margin-top: 8vh;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+}
+
+.graveyards-container{
+    position: relative;
+    width: 60vh;
+    margin-top:10px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+@media screen and (max-width: 700px){
+    .games-online-container{
+        position: relative;
+        width: min(60vh, 85vw);
+        height: min(60vh, 85vw);
+        margin-top: 8vh;
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: space-around;
+        display: flex;
+        flex-direction: row;
+    }
+    .graveyards-container{
+        position: relative;
+        width: min(50vh, 85vw);
+        margin-top:10px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 50px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .status-display-container{
+        position:relative;
+        width: 80vw;
+        height: calc(min(20vh, 100px) - 40px);
+        padding: 10px 20px 10px 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+} */

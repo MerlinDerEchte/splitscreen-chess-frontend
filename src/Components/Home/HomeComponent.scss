@@ -1,0 +1,86 @@
+@use '../../Styles/Colors.scss';
+
+
+
+$visuals-body-height: min(80vw, 50vh);
+
+.home-component-body{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background: Colors.$grey;
+    .image-container{
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top:10vh;
+        height: $visuals-body-height;
+        width: $visuals-body-height;
+
+        .animated-knight-init {
+            stroke-dasharray: 150;
+            animation:  knight-first 1s ease-in-out ;
+            fill: none;
+            stroke: Colors.$darkblue;
+         }
+         .animated-knight-split{
+            stroke-dasharray: 150;
+            fill: url(#splitGradient);
+            stroke: Colors.$darkblue;
+         }
+
+         .animated-knight-online{
+            stroke-dasharray: 150;
+            fill: url(#onlineGradient);
+            stroke: Colors.$darkblue;
+         }
+       
+    }
+    .nav-container{
+        position: relative;;
+        margin-top: 10vh;
+        margin-left: auto;
+        margin-right: auto;
+        display:flex;
+        flex-direction: column;
+
+        button{
+            width: 100px;
+            height: 30px;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            cursor: pointer;
+            background: Colors.$lightblue;
+            color: Colors.$whiteFields;
+            border-radius: 5px;
+            border: none;
+
+            &:hover{
+                box-shadow: 1px 1px 5px Colors.$lightblue; 
+                transition: box-shadow 0.3s ease;
+            }
+
+            a{
+                color: Colors.$whiteFields;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+@keyframes knight-first {
+    0% { stroke-dashoffset: 150;}
+    95% { stroke-dashoffset : 0;}
+    100% { stroke-dashoffset: 0;}
+}
+
