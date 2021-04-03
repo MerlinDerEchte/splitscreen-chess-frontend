@@ -1,7 +1,7 @@
 import React from 'react';
 import './NavigationMenu.scss'
 import { Router, Route, Link, useHistory } from 'react-router-dom';
-
+import URL from '../../../URL';
 function NavigationMenu(props) {
 
     const navigationMenuClass = props.showNavigationMenu === 0
@@ -20,12 +20,12 @@ function NavigationMenu(props) {
             <div className="navigation-menu-list">
                 <ul>
                     <li >
-                        <Link onClick = {props.toggleShowNavigationMenu} to="/">
+                        <Link onClick = {props.toggleShowNavigationMenu} to={URL + "/"}>
                         <span>Home</span>
                         </Link>
                     </li>
                     <li>
-                        <Link onClick= {props.toggleShowNavigationMenu} to="/Splitscreen">
+                        <Link onClick= {props.toggleShowNavigationMenu} to={URL + "/Splitscreen"}>
                         <span>Splitscreen</span>
                         </Link>
                     </li>

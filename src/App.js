@@ -9,7 +9,7 @@ import OnlineGame from './Components/OnlineGame/OnlineGame';
 import NavigationMenu from './Components/Shared/NavigationMenu/NavigationMenu';
 import NavigationButton from './Components/Shared/NavigationButton/NavigationButton';
 import HomeComponent from './Components/Home/HomeComponent';
-
+import URL from './URL'
 const newGameEndpoint = "https://splitscreen-chess.herokuapp.com";
 
 
@@ -29,7 +29,7 @@ function App() {
             .then(res => res.json())
             .then(data => {
 
-                history.push(`/online/${data.gameID}`)
+                history.push(`${URL}/online/${data.gameID}`)
             })
             .catch(err => console.log(err))
     }
@@ -78,20 +78,20 @@ function App() {
             />
 
             {/* <Link to="/"> home</Link> */}
-            <Route exact path="/" render={() => (
+            <Route exact path={URL + "/"} render={() => (
                 <HomeComponent createNewGame={createNewGame}/>
             )}>
                 {/* <Link to="/Splitscreen" >Splitscreen game </Link>
                 <button onClick={createNewGame}> create new game </button> */}
             </Route>
-            <Route path="/Splitscreen" render={() => (
+            <Route path={URL + "/Splitscreen"} render={() => (
                 <SplitscreenGame
                     screenWidth = {screenWidth}
                     screenHeight = {screenHeight}
                 />)}>
 
             </Route>
-            <Route path="/online/:id" render={(props) => (
+            <Route path={URL +"/online/:id"} render={(props) => (
                 < OnlineGame {...props}
                     screenWidth = {screenWidth}
                     screenHeight = {screenHeight}
