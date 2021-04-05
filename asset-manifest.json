@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/splitscreen-chess-frontend/static/css/main.f9ca679d.chunk.css",
-    "main.js": "/splitscreen-chess-frontend/static/js/main.582c95d7.chunk.js",
-    "main.js.map": "/splitscreen-chess-frontend/static/js/main.582c95d7.chunk.js.map",
+    "main.js": "/splitscreen-chess-frontend/static/js/main.db61fa8d.chunk.js",
+    "main.js.map": "/splitscreen-chess-frontend/static/js/main.db61fa8d.chunk.js.map",
     "runtime-main.js": "/splitscreen-chess-frontend/static/js/runtime-main.676b3fc4.js",
     "runtime-main.js.map": "/splitscreen-chess-frontend/static/js/runtime-main.676b3fc4.js.map",
     "static/js/2.32d5cb8e.chunk.js": "/splitscreen-chess-frontend/static/js/2.32d5cb8e.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.676b3fc4.js",
     "static/js/2.32d5cb8e.chunk.js",
     "static/css/main.f9ca679d.chunk.css",
-    "static/js/main.582c95d7.chunk.js"
+    "static/js/main.db61fa8d.chunk.js"
   ]
 }
