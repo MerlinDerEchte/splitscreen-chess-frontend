@@ -67,23 +67,27 @@ function BoardComponent(props) {
     }
 
 
-    
+    //if move is executed by pointerdown + pointermove : pass selected position as selectedPosition,
+    // if field is only clicked set selectedField and selectedFieldPossibleTargets in state for the next click
 
     function pointerDownField(e, pointerType) {
         console.log(e)
+
+    
         e.stopPropagation();
         e.preventDefault();
         e.cancelBubble = true;
         const selectedPosition = getMousePositionField(e);
         let newSelectedFieldPossiblePositions;
         console.log(selectedPosition)
+
         if (props.Board.turn === props.playerColor || props.rotateColor) {
+
             console.log('in here');
             const pieceOnClickedField = props.Board.getPieceByPosition(selectedPosition);
             console.log(pieceOnClickedField)
+
             if (pieceOnClickedField && pieceOnClickedField.color === props.Board.turn) {
-
-
 
                 const pieceMoves = getPieceMoves(pieceOnClickedField, props.Board)
                 newSelectedFieldPossiblePositions = pieceMoves.filter(move => {
@@ -99,31 +103,39 @@ function BoardComponent(props) {
                 setSelectedFieldPossibleTargets(newSelectedFieldPossiblePositions)
                 const boardContainer = document.getElementById(`board-${props.playerColor}`);
                 //document.addEventListener('mousemove', movePieceImage, false);
-                if(pointerType === "mouse") {
-                    boardContainer.addEventListener('mousemove', movePieceImage,false);
-                    boardContainer.addEventListener('mouseup' , pointerUpField, false);
+                if (pointerType === "mouse") {
+                    boardContainer.addEventListener('mousemove', movePieceImage, false);
+                    boardContainer.addEventListener('mouseup', pointerUpField, false);
                 }
-                if(pointerType === "touch"){
+                if (pointerType === "touch") {
                     console.log('adding rouch listener')
                     boardContainer.addEventListener('touchmove', movePieceImage, false);
                     boardContainer.addEventListener('touchend', pointerUpField, false);
 
                 }
                 //document.addEventListener('mouseup', pointerUpField, false);
-                
+
             } else if (selectedField || selectedField === 0) {
 
-                const pieceOnSelectedField = props.Board.getPieceByPosition(selectedField);
-                const possibleMoves = getPieceMoves(pieceOnSelectedField, props.Board);
+                if (selectedFieldPossibleTargets.includes(selectedPosition)) {
 
-                const nextMove = possibleMoves.find(move => move.targetPosition === selectedPosition)
 
-                if (nextMove) {
+                    const pieceOnSelectedField = props.Board.getPieceByPosition(selectedField);
+                    const possibleMoves = getPieceMoves(pieceOnSelectedField, props.Board);
+                    console.log(props.Board)
+                    console.log(pieceOnSelectedField);
+                    console.log(possibleMoves);
+                    const nextMove = possibleMoves.find(move => move.targetPosition === selectedPosition)
 
-                    unselectField();
-                    moveToSelectedField(nextMove)
+                    if (nextMove) {
 
-                } else {
+                        unselectField();
+                        moveToSelectedField(nextMove)
+
+                    } else {
+                        unselectField();
+                    }
+                }else{
                     unselectField();
                 }
             } else {
@@ -215,21 +227,20 @@ function BoardComponent(props) {
         }
 
         function pointerUpField(e) {
-
+            console.log("in pointer up")
             const fieldNumber = getMousePositionField(e);
             const boardContainer = document.getElementById(`board-${props.playerColor}`);
             // document.removeEventListener('mousemove', movePieceImage, false);
-            if ( pointerType === "mouse" ){
+            if (pointerType === "mouse") {
                 boardContainer.removeEventListener('mousemove', movePieceImage, false);
-                boardContainer.removeEventListener('mouseup',pointerUpField, false );
+                boardContainer.removeEventListener('mouseup', pointerUpField, false);
             }
 
-            if(pointerType === "touch"){
+            if (pointerType === "touch") {
                 boardContainer.removeEventListener('touchmove', movePieceImage, false);
-                boardContainer.removeEventListener('touchend',pointerUpField, false );
+                boardContainer.removeEventListener('touchend', pointerUpField, false);
             }
 
-           
             // document.removeEventListener('mouseup', pointerUpField, false);
             const pieceIMG = document.getElementById(`${props.playerColor}-${selectedPosition}-piece-image`);
 
@@ -298,11 +309,11 @@ function BoardComponent(props) {
                         "game-reverse-container game-container-to-move"
                         :
                         "game-reverse-container"
-            }
+        }
             id={`board-${props.playerColor}`}
             onTouchStart={e => pointerDownField(e, "touch")}
             onMouseDown={e => pointerDownField(e, "mouse")}
-            
+
         >
             {props.Board.isGameOver ? <GameOver Board={props.Board} /> : ''}
 

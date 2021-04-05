@@ -1,0 +1,15 @@
+@use '../../../Styles/Colors';
+.other-player-left-body{
+    width: 100vw;
+    height: 100px;
+    display: table-cell;
+    position: relative;
+    z-index: 20;
+    top: calc(50vh - 50px);
+    background: Colors.$whiteFields;
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+    color: Colors.$darkblue;
+    vertical-align: middle;
+}

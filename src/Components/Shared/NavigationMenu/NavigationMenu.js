@@ -20,12 +20,12 @@ function NavigationMenu(props) {
             <div className="navigation-menu-list">
                 <ul>
                     <li >
-                        <Link onClick = {props.toggleShowNavigationMenu} to={URL + "/"}>
+                        <Link onClick = {props.toggleShowNavigationMenu} to={"/"}>
                         <span>Home</span>
                         </Link>
                     </li>
                     <li>
-                        <Link onClick= {props.toggleShowNavigationMenu} to={URL + "/Splitscreen"}>
+                        <Link onClick= {props.toggleShowNavigationMenu} to={"/Splitscreen"}>
                         <span>Splitscreen</span>
                         </Link>
                     </li>

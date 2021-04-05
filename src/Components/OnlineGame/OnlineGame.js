@@ -8,28 +8,43 @@ import './OnlineGame.scss';
 import Graveyard from '../Shared/Game/Graveyard/Graveyard';
 import StatusDisplay from '../Shared/Game/StatusDisplay/StatusDisplay';
 import ReadyToShareComponent from './ReadyToShareComponent/ReadyToShareComponent';
-const URL = window.location.host.split(":")[0];
-
-const ENDPOINT = `https://splitscreen-chess.herokuapp.com`;
-
-
+import  ENDPOINT from '../../backendEndpoint.js';
+import OtherPlayerLeftComponent from './OtherPlayerLeftComponent/OtherPlayerLeftComponent';
 function OnlineGame(props) {
     const gameRoomID = props.match.params.id;
     const [socket, setSocket] = useState(null);
-    const [isInGame, setIsInGame] = useState(false);
     const [Board, setBoard] = useState({});
     const [areTwoPlayersIngame, setAreTwoPlayersIngame] = useState(false);
     const [playerColor, setPlayerColor] = useState(null);
     const [showUndoOverlay, setShowUndoOverlay] = useState(false);
     const [playerId, setPlayerId] = useState(null);
+    const [isInGame, setIsInGame] = useState(false);
+    const [otherPlayerLeft, setOtherPlayerLeft] = useState(false);
+
+    useEffect(() => {
+        setSocket(null)
+        setAreTwoPlayersIngame(false);
+        setPlayerColor(null);
+        setShowUndoOverlay(false);
+        setPlayerId(null);
+        setIsInGame(false);
+        setOtherPlayerLeft(false);
+        setBoard({})
+    },[props.match.params.id])
+
+
     useEffect(() => {
 
-        setIsInGame(false);
-        setBoard({})
-        setPlayerColor(null)
-        setSocket(socketIOClient(ENDPOINT));
+        if(!isInGame) setSocket(socketIOClient(ENDPOINT),{'pingInterval': 45000});
 
-    }, [gameRoomID]);
+        if(!playerColor){
+            setBoard({})
+            setPlayerColor(null)
+        }
+       
+        
+
+    }, [gameRoomID,isInGame]);
 
     useEffect(() => {
         if (socket) {
@@ -38,9 +53,10 @@ function OnlineGame(props) {
                 socket.emit('joingame', gameRoomID,playerId);
             }
             socket.on('joinedGame', (color, playerId) => {
-                setIsInGame(true);
+               
                 setPlayerColor(color);
                 setPlayerId(playerId);
+                setIsInGame(true);
 
             })
 
@@ -60,7 +76,14 @@ function OnlineGame(props) {
             });
 
             socket.on('disconnect', () => {
+                setAreTwoPlayersIngame(false);
+                setIsInGame(false);
+            })
+    
+            socket.on("other player left", ()=> {
+                console.log("other player left");
                 setAreTwoPlayersIngame(false)
+                setOtherPlayerLeft(true);
             })
 
             return () => socket.disconnect();
@@ -142,6 +165,12 @@ function OnlineGame(props) {
                         ''
                     }
                 </>
+                :
+
+                otherPlayerLeft 
+                ?
+                <OtherPlayerLeftComponent />
+
                 :
                 <ReadyToShareComponent
                     screenWidth={props.screenWidth}

@@ -36,16 +36,16 @@ function HomeComponent(props) {
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="3 3 40 40">
                     <defs>
                         <linearGradient id="splitGradient" gradientTransform="rotate(15)" >
-                            <stop offset="0%" stop-color="#52658f" />
-                            <stop offset="65%" stop-color="#52658f">
+                            <stop offset="0%" stopColor="#52658f" />
+                            <stop offset="65%" stopColor="#52658f">
                                 <animate attributeName="stop-color" values="#e8e8e8; #52658f" dur="2s" begin="0s" />
                                 <animate attributeName="offset" values="-1; 0.65" dur="2s" begin="0s" />
                             </stop>
-                            <stop offset="65%" stop-color="#f7f5e6" >
+                            <stop offset="65%" stopColor="#f7f5e6" >
                                 <animate attributeName="stop-color" values="#e8e8e8; #f7f5e6" dur="2s" begin="0s" />
                                 <animate attributeName="offset" values="2; 0.65" dur="2s" begin="0s" />
                             </stop>
-                            <stop offset="100%" stop-color="#f7f5e6" />
+                            <stop offset="100%" stopColor="#f7f5e6" />
                         </linearGradient>
                         <linearGradient id="onlineGradient"  >
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -8,12 +8,12 @@ import reportWebVitals from './reportWebVitals';
 
 
 
-
+console.log(process.env.PUBLIC_URL)
 
 ReactDOM.render(
-    <BrowserRouter>
+    <Router basename={process.env.PUBLIC_URL}>
             <App />
-    </BrowserRouter>,
+    </Router>,
     document.getElementById('root')
 );
 
