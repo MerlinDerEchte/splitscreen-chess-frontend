@@ -8,18 +8,27 @@ import './OnlineGame.scss';
 import Graveyard from '../Shared/Game/Graveyard/Graveyard';
 import StatusDisplay from '../Shared/Game/StatusDisplay/StatusDisplay';
 import ReadyToShareComponent from './ReadyToShareComponent/ReadyToShareComponent';
-import  ENDPOINT from '../../backendEndpoint.js';
+import ENDPOINT from '../../backendEndpoint.js';
 import OtherPlayerLeftComponent from './OtherPlayerLeftComponent/OtherPlayerLeftComponent';
+
+
 function OnlineGame(props) {
+
     const gameRoomID = props.match.params.id;
     const [socket, setSocket] = useState(null);
     const [Board, setBoard] = useState({});
-    const [areTwoPlayersIngame, setAreTwoPlayersIngame] = useState(false);
+
     const [playerColor, setPlayerColor] = useState(null);
     const [showUndoOverlay, setShowUndoOverlay] = useState(false);
     const [playerId, setPlayerId] = useState(null);
+
+    const [isRoomExisting, setIsRoomExisting] = useState(null);
+    const [hasCreatedGame, setHasCreatedGame] = useState(props.hasCreatedGame);
+    const [isRoomFull, setIsRoomFull] = useState(false);
+    const [areTwoPlayersIngame, setAreTwoPlayersIngame] = useState(false);
     const [isInGame, setIsInGame] = useState(false);
     const [otherPlayerLeft, setOtherPlayerLeft] = useState(false);
+
 
     useEffect(() => {
         setSocket(null)
@@ -30,34 +39,39 @@ function OnlineGame(props) {
         setIsInGame(false);
         setOtherPlayerLeft(false);
         setBoard({})
-    },[props.match.params.id])
+    }, [props.match.params.id])
 
 
     useEffect(() => {
 
-        if(!isInGame) setSocket(socketIOClient(ENDPOINT),{'pingInterval': 45000});
+        if (!isInGame) setSocket(socketIOClient(ENDPOINT));
 
-        if(!playerColor){
+        if (!playerColor) {
             setBoard({})
             setPlayerColor(null)
         }
-       
-        
 
-    }, [gameRoomID,isInGame]);
+
+
+    }, [gameRoomID, isInGame]);
 
     useEffect(() => {
         if (socket) {
             if (!isInGame) {
 
-                socket.emit('joingame', gameRoomID,playerId);
+                socket.emit('joingame', gameRoomID, playerId);
             }
-            socket.on('joinedGame', (color, playerId) => {
-               
+            socket.on('joinedGame', (color, playerId, hasCreatedGame) => {
+                setIsRoomExisting(true);
                 setPlayerColor(color);
                 setPlayerId(playerId);
                 setIsInGame(true);
+                setHasCreatedGame(hasCreatedGame);
 
+            });
+
+            socket.on('roomIsFull', () => {
+                setIsRoomFull(true);
             })
 
             socket.on('gameChanged', board_unparsed => {
@@ -76,12 +90,12 @@ function OnlineGame(props) {
             });
 
             socket.on('disconnect', () => {
+                console.log("disconnecting")
                 setAreTwoPlayersIngame(false);
                 setIsInGame(false);
             })
-    
-            socket.on("other player left", ()=> {
-                console.log("other player left");
+
+            socket.on('otherPlayerLeft', () => {
                 setAreTwoPlayersIngame(false)
                 setOtherPlayerLeft(true);
             })
@@ -122,52 +136,89 @@ function OnlineGame(props) {
                 />
             </div>
 
-            {areTwoPlayersIngame
+            {isInGame
                 ?
-                <>
-                    <div className="games-online-container">
 
-                        {playerColor && Board.activePieces ?
-                            playerColor === Colors.WHITE
-                                ?
-                                <BoardComponent
-                                    screenWidth={props.screenWidth}
-                                    screenHeight={props.screenHeight}
-                                    playerColor={playerColor}
-                                    Board={Board}
-                                    move={move}
+                areTwoPlayersIngame
 
-                                />
+                    ?
+                    <>
+                        <div className="games-online-container">
+
+                            {playerColor && Board.activePieces ?
+                                playerColor === Colors.WHITE
+                                    ?
+                                    <BoardComponent
+                                        screenWidth={props.screenWidth}
+                                        screenHeight={props.screenHeight}
+                                        playerColor={playerColor}
+                                        Board={Board}
+                                        move={move}
+
+                                    />
+                                    :
+                                    <BoardComponent
+                                        screenWidth={props.screenWidth}
+                                        screenHeight={props.screenHeight}
+                                        playerColor={playerColor}
+                                        Board={Board}
+                                        move={move}
+
+                                    />
                                 :
-                                <BoardComponent
+                                ''
+                            }
+
+                        </div>
+                        {playerColor && Board.graveyardPieces
+                            ?
+                            <div className="graveyards-container">
+                                <Graveyard
                                     screenWidth={props.screenWidth}
                                     screenHeight={props.screenHeight}
                                     playerColor={playerColor}
-                                    Board={Board}
-                                    move={move}
-
-                                />
+                                    Board={Board} />
+                            </div>
                             :
                             ''
                         }
+                    </>
 
-                    </div>
-                    {playerColor && Board.graveyardPieces
+                    :
+
+                    hasCreatedGame
+
                         ?
-                        <div className="graveyards-container">
-                            <Graveyard
+                        otherPlayerLeft
+
+                            ?
+
+                            <OtherPlayerLeftComponent />
+
+                            :
+
+                            <ReadyToShareComponent
                                 screenWidth={props.screenWidth}
                                 screenHeight={props.screenHeight}
-                                playerColor={playerColor}
-                                Board={Board} />
-                        </div>
+                            />
+
                         :
-                        ''
-                    }
-                </>
+                        <OtherPlayerLeftComponent />
                 :
 
-                otherPlayerLeft 
+                isRoomFull
+                ?
+                'Game is Full'
+
+                : 
+                "game doens't exist anymore"
+
+
+
+
+
+
+                /* otherPlayerLeft 
                 ?
                 <OtherPlayerLeftComponent />
 
@@ -175,7 +226,7 @@ function OnlineGame(props) {
                 <ReadyToShareComponent
                     screenWidth={props.screenWidth}
                     screenHeight={props.screenHeight}
-                />
+                /> */
             }
 
         </>
