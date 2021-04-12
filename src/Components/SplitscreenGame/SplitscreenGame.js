@@ -6,7 +6,7 @@ import Graveyard from '../Shared/Game/Graveyard/Graveyard';
 import Colors from '../../Model/GameLogic/Colors';
 import makeMove from '../../Model/GameLogic/makeMove';
 import StatusDisplay from '../Shared/Game/StatusDisplay/StatusDisplay';
-import createNewGame from '../../Model/GameLogic/createNewGame';
+import newGameFactory from '../../Model/GameLogic/newGameFactory';
 import Board from '../Shared/Game/Board/BoardComponent';
 import undoMove from  '../../Model/GameLogic/undoMove'
 function SplitscreenGame(props) {
@@ -34,7 +34,7 @@ function SplitscreenGame(props) {
 
 
     function initGame() {
-        const newGame = createNewGame();
+        const newGame = newGameFactory();
         console.log(newGame)
         setGame(newGame);
         setIsGameInitialized(true);

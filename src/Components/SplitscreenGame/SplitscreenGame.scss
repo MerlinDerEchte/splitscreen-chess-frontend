@@ -1,13 +1,4 @@
-/* .status-display-container{
-    position:relative;
-    width: 60vw;
-    height: calc(min(20vh, 100px) - 40px);
-    margin-top: 20px;
 
-    padding: 10px 20px 10px 20px;
-    margin-left: auto;
-    margin-right: auto;
-} */
 $game-height : min(60vh, 25vw);
 $game-offsetTop:  calc( 50vh - ( #{$game-height} / 2 ));
 $graveyard-height: calc(#{$game-height} / 4);
@@ -58,9 +49,6 @@ $mobile-game-offsetLeft: calc(50vw - ( #{$mobile-game-height} / 2));
 
 @media screen and (max-width: 1000px){
 
-
-
-
     .mobile-offline-game-container{
         position: absolute;
         width: $mobile-game-height;
@@ -70,11 +58,6 @@ $mobile-game-offsetLeft: calc(50vw - ( #{$mobile-game-height} / 2));
         justify-content: space-around;
         display: flex;
         flex-direction: row;
-    
-        /* .splitscreen-game-container{
-            width:calc(min(120vh, 50vw) / 2);
-            height: min(60vh, 25vw);
-        } */
     
     }
 

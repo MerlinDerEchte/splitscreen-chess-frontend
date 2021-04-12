@@ -212,21 +212,6 @@ function OnlineGame(props) {
 
                 : 
                 "game doens't exist anymore"
-
-
-
-
-
-
-                /* otherPlayerLeft 
-                ?
-                <OtherPlayerLeftComponent />
-
-                :
-                <ReadyToShareComponent
-                    screenWidth={props.screenWidth}
-                    screenHeight={props.screenHeight}
-                /> */
             }
 
         </>

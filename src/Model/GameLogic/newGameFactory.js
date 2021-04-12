@@ -4,7 +4,7 @@ import Types from './Types';
 import Colors from './Colors';
 import Piece from './Piece';
 
-function createNewGame(){
+function newGameFactory(){
 
     const nextActivePieces = [];
     let i = 0;
@@ -71,4 +71,4 @@ function createNewGame(){
     return new Game(newBoard,[]);
 }   
 
-export default createNewGame;
+export default newGameFactory;

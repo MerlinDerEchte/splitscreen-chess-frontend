@@ -1,7 +1,5 @@
 @use '../../Styles/Colors.scss';
 
-
-
 $visuals-body-height: min(80vw, 50vh);
 
 .home-component-body{
@@ -25,17 +23,7 @@ $visuals-body-height: min(80vw, 50vh);
             fill: none;
             stroke: Colors.$darkblue;
          }
-         .animated-knight-split{
-            stroke-dasharray: 150;
-            fill: url(#splitGradient);
-            stroke: Colors.$darkblue;
-         }
-
-         .animated-knight-online{
-            stroke-dasharray: 150;
-            fill: url(#onlineGradient);
-            stroke: Colors.$darkblue;
-         }
+       
        
     }
     .nav-container{
@@ -70,12 +58,6 @@ $visuals-body-height: min(80vw, 50vh);
         }
     }
 }
-
-
-
-
-
-
 
 
 @keyframes knight-first {
