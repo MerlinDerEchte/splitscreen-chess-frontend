@@ -13,7 +13,7 @@ function HomeComponent(props) {
     }
 
     function handleOnlineGameNavigation(e) {
-        props.newGameFactory();
+        props.createNewGame();
     }
     
    
