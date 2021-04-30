@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import socketIOClient from "socket.io-client";
 import Colors from '../../Model/GameLogic/Colors';
 import BoardComponent from '../Shared/Game/Board/BoardComponent';
-import UndoMoveComponent from '../Shared/Game/UndoMoveComponent/UndoMoveComponent'
+import UndoMoveComponent from './UndoMoveComponent/UndoMoveComponent'
 import boardFactory from '../../Model/GameLogic/boardFactory';
 import './OnlineGame.scss';
 import Graveyard from '../Shared/Game/Graveyard/Graveyard';
@@ -10,7 +10,7 @@ import StatusDisplay from '../Shared/Game/StatusDisplay/StatusDisplay';
 import ReadyToShareComponent from './ReadyToShareComponent/ReadyToShareComponent';
 import ENDPOINT from '../../backendEndpoint.js';
 import OtherPlayerLeftComponent from './OtherPlayerLeftComponent/OtherPlayerLeftComponent';
-
+import WaitingForPlayerReactionComponent from './WaitingForPlayerReactionComponent/WaitingForPlayerReactionComponent';
 
 function OnlineGame(props) {
 
@@ -21,7 +21,7 @@ function OnlineGame(props) {
     const [playerColor, setPlayerColor] = useState(null);
     const [showUndoOverlay, setShowUndoOverlay] = useState(false);
     const [playerId, setPlayerId] = useState(null);
-
+    const [showWaitingForPlayerReaction, setShowWaitingForPlayerReaction] = useState(false);
     const [isRoomExisting, setIsRoomExisting] = useState(null);
     const [hasCreatedGame, setHasCreatedGame] = useState(props.hasCreatedGame);
     const [isRoomFull, setIsRoomFull] = useState(false);
@@ -35,6 +35,7 @@ function OnlineGame(props) {
         setAreTwoPlayersIngame(false);
         setPlayerColor(null);
         setShowUndoOverlay(false);
+        setShowWaitingForPlayerReaction(false);
         setPlayerId(null);
         setIsInGame(false);
         setOtherPlayerLeft(false);
@@ -44,7 +45,7 @@ function OnlineGame(props) {
 
     useEffect(() => {
 
-        if (!isInGame) setSocket(socketIOClient(ENDPOINT));
+        if (!isInGame) setSocket(socketIOClient(process.env.REACT_APP_BACKEND_URL));
 
         if (!playerColor) {
             setBoard({})
@@ -67,7 +68,7 @@ function OnlineGame(props) {
                 setPlayerId(playerId);
                 setIsInGame(true);
                 setHasCreatedGame(hasCreatedGame);
-
+                console.log("joined game")
             });
 
             socket.on('roomIsFull', () => {
@@ -78,6 +79,7 @@ function OnlineGame(props) {
 
                 const board = boardFactory(JSON.parse(JSON.stringify(board_unparsed)));
                 setShowUndoOverlay(false);
+                setShowWaitingForPlayerReaction(false);
                 setBoard(board)
 
             })
@@ -111,12 +113,19 @@ function OnlineGame(props) {
     }
 
     function undoMove() {
-        if (Board.round > 0) socket.emit('undoMoveRequest', gameRoomID);
-
+        
+        if (Board.round > 0) {
+            socket.emit('undoMoveRequest', gameRoomID);
+            setShowWaitingForPlayerReaction(true);
+        }
     }
 
     function acceptUndoMove() {
         socket.emit('acceptUndoMove', gameRoomID)
+    }
+
+    function denyUndoMove() {
+        socket.emit('denyUndoMove', gameRoomID)
     }
 
     return (
@@ -125,9 +134,17 @@ function OnlineGame(props) {
             ?
             <UndoMoveComponent
                 acceptUndoMove={acceptUndoMove}
+                denyUndoMove = {denyUndoMove}
                 setShowUndoOverlay={setShowUndoOverlay}
             /> :
             ''}
+            {
+                showWaitingForPlayerReaction
+                ?
+                <WaitingForPlayerReactionComponent />
+                :
+                ''
+            }
             <div className="status-display-container">
                 <StatusDisplay
                     Board={Board}
@@ -211,7 +228,7 @@ function OnlineGame(props) {
                 'Game is Full'
 
                 : 
-                "game doens't exist anymore"
+                "game doesn't exist anymore"
             }
 
         </>

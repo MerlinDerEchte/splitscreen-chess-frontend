@@ -23,7 +23,7 @@ function App() {
 
 
     function createNewGame() {
-        fetch(`${newGameEndpoint}/newgame`, {
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/newgame`, {
             method: 'GET'
         })
             .then(res => res.json())

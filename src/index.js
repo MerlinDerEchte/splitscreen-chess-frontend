@@ -5,11 +5,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-
-
-
-console.log(process.env.PUBLIC_URL)
-
 ReactDOM.render(
     <Router basename={process.env.PUBLIC_URL}>
             <App />
