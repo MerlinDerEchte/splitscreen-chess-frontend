@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/splitscreen-chess-frontend/static/css/main.e53833e1.chunk.css",
-    "main.js": "/splitscreen-chess-frontend/static/js/main.7d410144.chunk.js",
-    "main.js.map": "/splitscreen-chess-frontend/static/js/main.7d410144.chunk.js.map",
-    "runtime-main.js": "/splitscreen-chess-frontend/static/js/runtime-main.676b3fc4.js",
-    "runtime-main.js.map": "/splitscreen-chess-frontend/static/js/runtime-main.676b3fc4.js.map",
-    "static/js/2.32d5cb8e.chunk.js": "/splitscreen-chess-frontend/static/js/2.32d5cb8e.chunk.js",
-    "static/js/2.32d5cb8e.chunk.js.map": "/splitscreen-chess-frontend/static/js/2.32d5cb8e.chunk.js.map",
-    "static/js/3.db6ef414.chunk.js": "/splitscreen-chess-frontend/static/js/3.db6ef414.chunk.js",
-    "static/js/3.db6ef414.chunk.js.map": "/splitscreen-chess-frontend/static/js/3.db6ef414.chunk.js.map",
+    "main.css": "/splitscreen-chess-frontend/static/css/main.73cd8838.chunk.css",
+    "main.js": "/splitscreen-chess-frontend/static/js/main.2360d661.chunk.js",
+    "main.js.map": "/splitscreen-chess-frontend/static/js/main.2360d661.chunk.js.map",
+    "runtime-main.js": "/splitscreen-chess-frontend/static/js/runtime-main.12d8cf4b.js",
+    "runtime-main.js.map": "/splitscreen-chess-frontend/static/js/runtime-main.12d8cf4b.js.map",
+    "static/js/2.00cbd875.chunk.js": "/splitscreen-chess-frontend/static/js/2.00cbd875.chunk.js",
+    "static/js/2.00cbd875.chunk.js.map": "/splitscreen-chess-frontend/static/js/2.00cbd875.chunk.js.map",
+    "static/js/3.59a530cc.chunk.js": "/splitscreen-chess-frontend/static/js/3.59a530cc.chunk.js",
+    "static/js/3.59a530cc.chunk.js.map": "/splitscreen-chess-frontend/static/js/3.59a530cc.chunk.js.map",
     "index.html": "/splitscreen-chess-frontend/index.html",
-    "static/css/main.e53833e1.chunk.css.map": "/splitscreen-chess-frontend/static/css/main.e53833e1.chunk.css.map",
-    "static/js/2.32d5cb8e.chunk.js.LICENSE.txt": "/splitscreen-chess-frontend/static/js/2.32d5cb8e.chunk.js.LICENSE.txt"
+    "static/css/main.73cd8838.chunk.css.map": "/splitscreen-chess-frontend/static/css/main.73cd8838.chunk.css.map",
+    "static/js/2.00cbd875.chunk.js.LICENSE.txt": "/splitscreen-chess-frontend/static/js/2.00cbd875.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.676b3fc4.js",
-    "static/js/2.32d5cb8e.chunk.js",
-    "static/css/main.e53833e1.chunk.css",
-    "static/js/main.7d410144.chunk.js"
+    "static/js/runtime-main.12d8cf4b.js",
+    "static/js/2.00cbd875.chunk.js",
+    "static/css/main.73cd8838.chunk.css",
+    "static/js/main.2360d661.chunk.js"
   ]
 }
